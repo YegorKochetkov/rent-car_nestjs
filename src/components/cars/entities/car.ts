@@ -41,5 +41,6 @@ export class Car {
 
   @OneToOne(() => CarPhoto)
   @JoinColumn()
+  @Field()
   photos: CarPhoto;
 }
