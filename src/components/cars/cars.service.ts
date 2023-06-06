@@ -25,6 +25,19 @@ export class CarsService {
       });
   }
 
+  public async getCarById(carId: string): Promise<Car> {
+    return await this.carRepository
+      .findOne({
+        where: { id: carId },
+        relations: {
+          thumbnail: true,
+        },
+      })
+      .catch(() => {
+        throw new InternalServerErrorException();
+      });
+  }
+
   public async addCar(newCarData: NewCarInput): Promise<Car> {
     const newCarPhoto = this.carPhotoRepository.create(newCarData.thumbnail);
 
@@ -41,5 +54,19 @@ export class CarsService {
     });
 
     return newCar;
+  }
+
+  public async deleteCar(carId: string): Promise<string> {
+    const car = await this.getCarById(carId);
+
+    await this.carPhotoRepository.delete(car.thumbnail).catch(() => {
+      new InternalServerErrorException();
+    });
+
+    await this.carRepository.delete(car).catch(() => {
+      new InternalServerErrorException();
+    });
+
+    return `Car ${carId} deleted`;
   }
 }

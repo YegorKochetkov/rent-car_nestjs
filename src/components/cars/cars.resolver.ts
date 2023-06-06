@@ -10,7 +10,14 @@ export class CarsResolver {
   @Query(() => [Car])
   public async cars(): Promise<Car[]> {
     return await this.carsService.getAllCars().catch((error) => {
-      throw error;
+      throw new Error(`Cars couldn't be fetched: ${error}`);
+    });
+  }
+
+  @Query(() => Car)
+  public async carById(@Args('carId') carId: string): Promise<Car> {
+    return await this.carsService.getCarById(carId).catch((error) => {
+      throw new Error(`Car not found: ${error}`);
     });
   }
 
@@ -19,7 +26,14 @@ export class CarsResolver {
     @Args('newCarData') newCarData: NewCarInput,
   ): Promise<Car> {
     return await this.carsService.addCar(newCarData).catch((error) => {
-      throw error;
+      throw new Error(`Car couldn't be added: ${error}`);
+    });
+  }
+
+  @Mutation(() => String)
+  public async deleteCar(@Args('carId') carId: string): Promise<string> {
+    return await this.carsService.deleteCar(carId).catch((error) => {
+      throw new Error(`Car couldn't be deleted: ${error}`);
     });
   }
 }
