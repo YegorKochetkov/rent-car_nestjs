@@ -1,6 +1,6 @@
 # Description
 
-Backend part for [RentCar](https://github.com/YegorKochetkov/rent-car_mern)
+Backend part of [RentCar](https://github.com/YegorKochetkov/rent-car_mern)
 
 ## Stack
 
