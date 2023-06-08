@@ -1,4 +1,6 @@
 import { Controller, Get, Req } from '@nestjs/common';
+import { Controller, Get, Req } from '@nestjs/common';
+import { Request } from 'express';
 import { Request } from 'express';
 import { AppService } from './app.service';
 
@@ -8,7 +10,7 @@ export class AppController {
 
   @Get()
   getHello(@Req() req: Request): string {
-    const host = req.headers.origin;
+    const host = req.get('host');
 
     return this.appService.getHello(host);
   }
