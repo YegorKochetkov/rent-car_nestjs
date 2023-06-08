@@ -1,4 +1,5 @@
 import { Test, TestingModule } from '@nestjs/testing';
+import { Request } from 'express';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 
@@ -15,10 +16,17 @@ describe('AppController', () => {
   });
 
   describe('root', () => {
-    it('should return "Hello World!"', () => {
-      expect(appController.getHello()).toBe(
-        'Go to /graphql to open playground',
-      );
+    it('should return "Click here to open qraphql playground"', () => {
+      const req = {
+        headers: {
+          origin: 'localhost:3003',
+        },
+      } as Request;
+
+      const result =
+        "<h3><a href='http://localhost:3003/graphql'>Click here</a> to open qraphql playground</h3>";
+
+      expect(appController.getHello(req)).toBe(result);
     });
   });
 });

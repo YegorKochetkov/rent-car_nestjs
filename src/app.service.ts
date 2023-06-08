@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 
 @Injectable()
 export class AppService {
-  getHello(): string {
-    return 'Go to /graphql to open playground';
+  getHello(host: string): string {
+    return `<h3><a href='http://${host}/graphql'>Click here</a> to open qraphql playground</h3>`;
   }
 }
