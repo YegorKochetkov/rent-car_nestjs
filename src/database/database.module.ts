@@ -12,7 +12,7 @@ import { DataSource } from 'typeorm';
       username: process.env.POSTGRES_USER || 'postgres',
       password: process.env.POSTGRES_PASSWORD || 'password',
       database: process.env.POSTGRES_DATABASE || 'postgres',
-      entities: ['public/**/entities/*{.ts,.js}'],
+      entities: ['dist/**/entities/*{.ts,.js}'],
       migrations: ['src/migrations/*{.ts,.js}'],
       synchronize: process.env.NODE_ENV === 'local' || false,
     }),
