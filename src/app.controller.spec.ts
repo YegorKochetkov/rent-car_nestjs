@@ -25,7 +25,7 @@ describe('AppController', () => {
       } as unknown as Request;
 
       const result =
-        "<h3><a href='http://localhost:3003/graphql'>Click here</a> to open qraphql playground</h3>";
+        "<h3><a href='http://localhost:3003/api/graphql'>Click here</a> to open qraphql playground</h3>";
 
       expect(appController.getHello(mockReq)).toBe(result);
     });
