@@ -14,6 +14,14 @@ const graphql_1 = require("@nestjs/graphql");
 const carPhoto_1 = require("./carPhoto");
 const typeorm_1 = require("typeorm");
 let Car = class Car {
+    id;
+    name;
+    dailyPrice;
+    monthlyPrice;
+    mileage;
+    gas;
+    gearType;
+    thumbnail;
 };
 __decorate([
     (0, typeorm_1.PrimaryGeneratedColumn)('uuid'),

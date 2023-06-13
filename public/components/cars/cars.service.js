@@ -19,6 +19,8 @@ const typeorm_2 = require("typeorm");
 const car_1 = require("./entities/car");
 const carPhoto_1 = require("./entities/carPhoto");
 let CarsService = class CarsService {
+    carRepository;
+    carPhotoRepository;
     constructor(carRepository, carPhotoRepository) {
         this.carRepository = carRepository;
         this.carPhotoRepository = carPhotoRepository;

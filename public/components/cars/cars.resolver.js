@@ -18,6 +18,7 @@ const cars_service_1 = require("./cars.service");
 const newCar_input_1 = require("./dto/newCar.input");
 const car_1 = require("./entities/car");
 let CarsResolver = class CarsResolver {
+    carsService;
     constructor(carsService) {
         this.carsService = carsService;
     }

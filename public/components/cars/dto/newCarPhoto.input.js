@@ -12,6 +12,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.NewCarPhotoInput = void 0;
 const graphql_1 = require("@nestjs/graphql");
 let NewCarPhotoInput = class NewCarPhotoInput {
+    xs;
+    sm;
 };
 __decorate([
     (0, graphql_1.Field)(),

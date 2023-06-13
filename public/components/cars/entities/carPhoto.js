@@ -13,6 +13,9 @@ exports.CarPhoto = void 0;
 const graphql_1 = require("@nestjs/graphql");
 const typeorm_1 = require("typeorm");
 let CarPhoto = class CarPhoto {
+    id;
+    xs;
+    sm;
 };
 __decorate([
     (0, typeorm_1.PrimaryGeneratedColumn)('uuid'),

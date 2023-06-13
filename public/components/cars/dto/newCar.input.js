@@ -14,6 +14,13 @@ const graphql_1 = require("@nestjs/graphql");
 const class_validator_1 = require("class-validator");
 const newCarPhoto_input_1 = require("./newCarPhoto.input");
 let NewCarInput = class NewCarInput {
+    name;
+    dailyPrice;
+    monthlyPrice;
+    mileage;
+    gas;
+    gearType;
+    thumbnail;
 };
 __decorate([
     (0, graphql_1.Field)(),
