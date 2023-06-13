@@ -16,6 +16,7 @@ import { DatabaseModule } from './database/database.module';
       driver: ApolloDriver,
       playground: true,
       autoSchemaFile: true,
+      path: 'api/graphql',
     }),
     ComponentsModule,
   ],
