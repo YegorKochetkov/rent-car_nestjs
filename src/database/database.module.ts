@@ -15,6 +15,7 @@ import { DataSource } from 'typeorm';
       entities: ['dist/**/entities/*{.ts,.js}'],
       migrations: ['src/migrations/*{.ts,.js}'],
       synchronize: process.env.NODE_ENV === 'local' || false,
+      ssl: true,
     }),
   ],
   exports: [TypeOrmModule],
