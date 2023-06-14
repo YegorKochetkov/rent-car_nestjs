@@ -15,7 +15,7 @@ export class CarsService {
   ) {}
 
   public async getAllCars(): Promise<Car[]> {
-    this.dataSource.initialize();
+    this.dataSource.synchronize();
 
     return await this.carRepository
       .find({
@@ -29,7 +29,7 @@ export class CarsService {
   }
 
   public async getCarById(carId: string): Promise<Car> {
-    this.dataSource.initialize();
+    this.dataSource.synchronize();
 
     return await this.carRepository
       .findOne({
@@ -44,7 +44,7 @@ export class CarsService {
   }
 
   public async addCar(newCarData: NewCarInput): Promise<Car> {
-    this.dataSource.initialize();
+    this.dataSource.synchronize();
 
     const newCarPhoto = this.carPhotoRepository.create(newCarData.thumbnail);
 
@@ -64,7 +64,7 @@ export class CarsService {
   }
 
   public async deleteCar(carId: string): Promise<string> {
-    this.dataSource.initialize();
+    this.dataSource.synchronize();
 
     const car = await this.getCarById(carId);
 
