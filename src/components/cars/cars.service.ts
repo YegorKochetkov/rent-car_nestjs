@@ -1,6 +1,6 @@
 import { Injectable, InternalServerErrorException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
+import { DataSource, Repository } from 'typeorm';
 import { NewCarInput } from './dto/newCar.input';
 import { Car } from './entities/car';
 import { CarPhoto } from './entities/carPhoto';
@@ -11,9 +11,12 @@ export class CarsService {
     @InjectRepository(Car) private carRepository: Repository<Car>,
     @InjectRepository(CarPhoto)
     private carPhotoRepository: Repository<CarPhoto>,
+    private dataSource: DataSource,
   ) {}
 
   public async getAllCars(): Promise<Car[]> {
+    this.dataSource.initialize();
+
     return await this.carRepository
       .find({
         relations: {
@@ -26,6 +29,8 @@ export class CarsService {
   }
 
   public async getCarById(carId: string): Promise<Car> {
+    this.dataSource.initialize();
+
     return await this.carRepository
       .findOne({
         where: { id: carId },
@@ -39,6 +44,8 @@ export class CarsService {
   }
 
   public async addCar(newCarData: NewCarInput): Promise<Car> {
+    this.dataSource.initialize();
+
     const newCarPhoto = this.carPhotoRepository.create(newCarData.thumbnail);
 
     await this.carPhotoRepository.save(newCarPhoto).catch(() => {
@@ -57,6 +64,8 @@ export class CarsService {
   }
 
   public async deleteCar(carId: string): Promise<string> {
+    this.dataSource.initialize();
+
     const car = await this.getCarById(carId);
 
     await this.carPhotoRepository.delete(car.thumbnail).catch(() => {
