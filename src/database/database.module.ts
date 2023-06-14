@@ -9,6 +9,8 @@ import { DataSource } from 'typeorm';
     TypeOrmModule.forRoot({
       type: 'postgres',
       host: process.env.POSTGRES_HOST || 'localhost',
+      url:
+        process.env.NODE_ENV === 'local' ? undefined : process.env.POSTGRES_URL,
       username: process.env.POSTGRES_USER || 'postgres',
       password: process.env.POSTGRES_PASSWORD || 'password',
       database: process.env.POSTGRES_DATABASE || 'postgres',
